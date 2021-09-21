@@ -1,0 +1,76 @@
+body {
+    overflow-x: hidden;
+}
+
+.bar {
+    height: 100%;
+    width: 305px;
+    background-color: black;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+}
+
+.logo{
+    margin-left: 70px;
+    margin-top: 30px;
+}
+
+.a {
+    margin-left: 25px;
+    color: white;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+}
+
+.a:hover{
+    color: #939393;
+    text-decoration: none;
+}
+
+::placeholder {
+    font-family: 'Nunito', sans-serif;
+    font-size: 17px;
+}
+
+.letter{
+    font-size: 12px;
+    font-family: 'Nunito', sans-serif;
+    color: #8b8b8b;
+    margin-left: 25px;
+}
+
+#carousel{
+    width: 1050px;
+    height: 550px;
+    position: absolute;
+    left: 305px;
+    top: 0px;
+}
+
+h2{
+    position: absolute;
+    top: 630px;
+    left: 350px;
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.row {
+    width: 100px;
+    height: 200px;
+    display: inline-block;
+    position: absolute;
+    top: 680px;
+    left: 350px;
+}
+
+.link{
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+
+}

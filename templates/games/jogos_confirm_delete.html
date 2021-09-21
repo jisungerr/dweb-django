@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gameteca</title>
+</head>
+<body>
+  <form method="post">
+			{% csrf_token %}
+			<p>Deseja mesmo deletar? "{{ object }}"?</p>
+			<button type="submit" class="btn btn-dark">Sim</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gameteca</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %} {{ form|crispy }}
+        <input type="submit" value="Editar" />
+    </form>
+</body>
+</html>

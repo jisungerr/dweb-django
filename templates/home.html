@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gameteca</title>
+    <link rel="icon" href="{% static 'images/icon.png' %}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+
+<body>
+    <div class="bar">
+        <img src="{% static 'images/logo.png' %}" class="logo" width="150" height="150"></br></br></br>
+
+        <div class="d-grid gap-2">
+            <a href="{% url 'cadastro-jogo' %}" class="btn btn-secondary">Cadastrar Jogo</a></br>
+        </div></br>
+
+        <div class="d-grid gap-2">
+
+            {% if not request.user.is_authenticated %}
+            <a class="btn btn-outline-secondary" href="{% url 'login' %}">Entrar</a>
+            <a class="btn btn-outline-secondary" href="{% url 'cadastrar' %}">Cadastrar Usuário</a>
+            {% else %}
+            <a class="btn btn-outline-secondary" href="{% url 'logout' %}">Sair</a>
+            {% endif %}
+        </div></br></br></br></br></br></br>
+
+        <p class="letter">Copyright: Iriany, Edwiges e Beatriz</p>
+    </div>
+
+
+    <div id="carousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      </div>
+
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <img src="{% static 'images/dbdt.jpg' %}" class="d-block w-100" alt="Dead By Daylight">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Dead By Daylight</h5>
+          </div>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="3000">
+          <img src="{% static 'images/picopark.jpg' %}" class="d-block w-100" alt="Pico Park">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Pico Park</h5>
+          </div>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="3000">
+          <img src="{% static 'images/thesims.jpeg' %}" class="d-block w-100" alt="The Sims 2">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>The Sims 2</h5>
+          </div>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="3000">
+          <img src="{% static 'images/minecraft.jpeg' %}" class= "d-block w-100" alt="Minecraft">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Minecraft</h5>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+
+    <h2>Cadastrados</h2>
+
+
+    <div class="row">
+        {% for jogo in object_list %}
+        <div class="col-sm-4">
+            <div class="card" style="width: 18rem">
+                <img src="{{ jogo.capa.url }}" class="card-img-top">
+                <div class="card-body">
+                    <a href="{% url 'detalhe-jogo' jogo.pk %}" class="text-decoration-none text-reset">
+                        <h5 class="card-title">{{ jogo.nome }}</h5>
+                    </a>
+                    <p>{{ jogo.enredo }}</p>
+
+                    <div class="card-footer bg-transparent border-secondary">
+                        <a href="{% url 'editar-jogo' jogo.pk %}" class="btn btn-dark">Editar</a>
+                        <a href="{% url 'deletar-jogo' jogo.pk %}" class="btn btn-outline-danger">Deletar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </br>
+        {% endfor %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+
+
+</body>
+</html>
